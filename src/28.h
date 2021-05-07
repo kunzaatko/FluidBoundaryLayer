@@ -1,7 +1,7 @@
 #ifndef HEADER
 #define HEADER
-#include <stdlib.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 /* allocates a float vector with subscript range v[nl..nh] */
 float *vector(long nl, long nh);
