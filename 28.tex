@@ -41,14 +41,22 @@
                 z^{(0)}(x) \\ 
                 z^{(1)}(x) \\
                 z^{(2)}(x) \\
-                z^{(3)}(x) \\ 
             \end{pmatrix} \qcomma 
         \vec{f}\left(x,\vec{Z}\right) = 
             \begin{pmatrix}
                 \dv{z^{(0)}}{x}\eval_{x,\vec{Z}}\\
                 \dv{z^{(1)}}{x}\eval_{x,\vec{Z}}\\
                 \dv{z^{(2)}}{x}\eval_{x,\vec{Z}}\\
-                \dv{z^{(3)}}{x}\eval_{x,\vec{Z}}\\
+            \end{pmatrix}  =
+            \begin{pmatrix} 
+                z^{(1)}(x,\vec{Z}) \\
+                z^{(2)}(x,\vec{Z}) \\
+                z^{(3)}(x,\vec{Z}) \\
+            \end{pmatrix} = 
+            \begin{pmatrix} 
+                z^{(1)} \\
+                z^{(2)} \\
+                -\lambda \left( 1 - {z^{(1)}}^{2} \right)  - z^{(2)}z^{(0)}
             \end{pmatrix} 
     \end{equation}
     Numerické řešení budeme provádět jednosměrnou metodou střelby z bodu $x_{0} = \vec{0}$ a řešení diferenciálních rovnic s pokusnými parametry Rundge-Kutta metodou čtvrtého řádu tedy:
