@@ -8,13 +8,14 @@
 \begin{example}
     Řešte metodou střelby Blasiovu rovnici mezní vrstvy
     \begin{gather*}
-        y''' + y y'' + \lambda \left( 1 - y'^{2} \right)  = 0,  \qq{kde } x \in (0,10) \qcomma \lambda \in \langle 0, 0.5 \rangle \\
+        y''' + y y'' + \lambda \left( 1 - y'^{2} \right)  = 0,
+        \qq{kde } x \in (0,10) \qcomma \lambda \in \langle 0, 0.5 \rangle \\
         y(0) = y'(0) = 0 \qcomma y'(10) = 1
     \end{gather*}
     \smallskip
     \hrule
     \medskip
-    Nejprve musíme diferenciální rovnici čtvrtého řádu rozložit na čtyři obyčejné diferenciální rovnice prvního řádu. To provedeme substitucemi:
+    Nejprve musíme diferenciální rovnici třetího řádu rozložit na čtyři obyčejné diferenciální rovnice prvního řádu. To provedeme substitucemi:
     \begin{equation}
         \label{substituce}
         y = z^{(0)}(x) \qcomma
@@ -63,15 +64,13 @@
     \begin{equation}
 \vec{Z}(x_{n+1}) = \vec{Z}(x_{n}) + \frac{1}{6}  \left(\vec{k}_{1} +  2\vec{k}_{2} + 2\vec{k}_{3} + \vec{k}_{4} \right)
     \end{equation}
-
     Pro dopředný chod potřebujeme čtyři parametry v počátečním bodě a ty vezmeme jako
     \begin{equation}
         \vec{Z}(0) = 
         \begin{pmatrix}
             z^{(0)}(0)\\
             z^{(1)}(0) \\
-            z^{(2)}(0) \\
-            z^{(3)}(0)
+            z^{(2)}(0)
         \end{pmatrix} 
     \end{equation}
     tedy s našimi počátečními podmínkami hledáme v parametrickém prostoru
@@ -81,14 +80,7 @@
                 0 \\
                 0 \\
                 1 \\
-                0 \\
-            \end{pmatrix} ,
-            \begin{pmatrix}
-                0 \\
-                0 \\
-                0 \\
-                1 \\
-            \end{pmatrix} 
+            \end{pmatrix}
             \right)_{\lambda}
         \end{equation}
         Koncový bod potom musí splňovat podmínku 
@@ -98,27 +90,18 @@
                 0 \\
                 1 \\
                 0 \\
-                0 \\
             \end{pmatrix}  + 
             \left( 
                 \begin{pmatrix} 
                     1 \\
                     0 \\
                     0 \\
-                    0 \\
                 \end{pmatrix},
                 \begin{pmatrix} 
                     0 \\
                     0 \\
                     1 \\
-                    0 \\
-                \end{pmatrix},
-                \begin{pmatrix} 
-                    0 \\
-                    0 \\
-                    0 \\
-                    1 \\
-                \end{pmatrix} 
+                \end{pmatrix}
             \right)_{\lambda}
         \end{equation}
     \end{example}
