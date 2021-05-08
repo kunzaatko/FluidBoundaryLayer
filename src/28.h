@@ -1,5 +1,6 @@
 #ifndef HEADER
 #define HEADER
+#include <math.h>
 #include <stddef.h>
 #include <stdlib.h>
 
@@ -42,5 +43,23 @@ void rk4(float z[], float dzstart[], int n, float x, float h, float zout[],
  */
 void usint(float z[], int n, int s, float a, float b, float zout[],
            void (*derivs)(float, float[], float[]));
+
+/* Evaluate the derivative of function f by z using delta dz.
+ *  z - value where the derivative should be evaluated
+ *  dz - delta to use for the evaluation
+ *  dfdz - [output] derivative at z
+ *  fz - value of f at z (for use in the Newton Raphson)
+ *  f - function of z with arguments (z, *fout)
+ */
+void dfdz(float z, float dz, float *dfdz, float *fz, void (*f)(float, float *));
+
+/* Use the Newton-Rhapson method for finding the root
+ *  zstart - initial value to start algorithm from
+ *  acc - accuracy to be accieved
+ *  zout - [output] root
+ *  dfdz - function of the derivative z with arguments (z, *fz, *dfdz)
+ */
+void nrrf(float zstart, float acc, float *zout,
+          void (*dfdz)(float z, float *, float *));
 
 #endif

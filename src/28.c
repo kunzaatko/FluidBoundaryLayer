@@ -115,3 +115,30 @@ void usint(float z[], int n, int s, float a, float b, float zout[],
   free_vector(zstart, 1, n);
   free_vector(dzstart, 1, n);
 } // }}}
+
+void dfdz(float z, float dz, float *dfdz, float *fz,
+          void (*f)(float, float *)) {
+  // {{{
+  float fzpdz; // f(z+dz), f(z)
+  f(z + dz, &fzpdz);
+  f(z, fz);
+  /* TODO: Tady by bylo asi vhodnější vracet hodnotu, protože to nic nestojí.
+   * Nastavení proměnné je stejně náročné jako jí vytvořit protože float žije na
+   * stacku. (Copy x Clone) <08-05-21, kunzaatko> */
+  *dfdz = (fzpdz - *fz) / dz;
+} // }}}
+
+void nrrf(float zstart, float acc, float *zout,
+          void (*dfdz)(float, float *, float *)) {
+  // {{{
+  float fz, ddfdz;  // function value, derivative at z
+  float z = zstart; // moving point z
+  for (;;) {
+    dfdz(z, &fz, &ddfdz);
+    z -= fz / ddfdz; // Newton-Raphson step for one dimensional root finding
+    if (fabsf(fz) <= acc) {
+      break;
+    }
+  }
+  *zout = z;
+} // }}}
