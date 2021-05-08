@@ -1,5 +1,5 @@
-#ifndef HEADER
-#define HEADER
+#ifndef UTIL_H
+#define UTIL_H
 #include <math.h>
 #include <stddef.h>
 #include <stdlib.h>
@@ -62,4 +62,4 @@ void dfdz(float z, float dz, float *dfdz, float *fz, void (*f)(float, float *));
 void nrrf(float zstart, float acc, float *zout,
           void (*dfdz)(float z, float *, float *));
 
-#endif
+#endif // UTIL_H

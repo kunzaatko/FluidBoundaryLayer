@@ -1,5 +1,5 @@
-#include "test_28.h"
-#include "../src/28.h"
+#include "test_util.h"
+#include "../src/util.h"
 #include "vendor/unity.h"
 #include <math.h>
 
@@ -87,7 +87,7 @@ static void test_poly_dfdz_nrrf(void) {
 // }}}
 
 int main(void) {
-  UnityBegin("test/test_28.c");
+  UnityBegin("test/test_util.c");
 
   RUN_TEST(test_euler_usint);
   printf("--------------\n");

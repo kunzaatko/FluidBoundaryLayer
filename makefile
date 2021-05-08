@@ -18,7 +18,7 @@ ASANFLAGS += -fno-common
 ASANFLAGS += -fno-omit-frame-pointer
 
 .PHONY: program
-program: src/28.c src/28.h
+program: src/util.c src/util.h src/blais.h src/blais.c src/main.c
 	@echo Compiling $@
 	@$(CC) $(CFLAGS) src/*.c -o target/program
 
@@ -39,4 +39,4 @@ clean:
 
 tests.out: test/*.c src/*.c src/*.h
 	@echo Compiling $@
-	@$(CC) $(CFLAGS) src/28.c test/vendor/unity.c test/*.c -o tests.out $(LIBS)
+	@$(CC) $(CFLAGS) src/util.c test/vendor/unity.c test/*.c -o tests.out $(LIBS)

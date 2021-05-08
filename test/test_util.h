@@ -1,5 +1,5 @@
-#ifndef TEST_28
-#define TEST_28
+#ifndef TEST_UTIL_H
+#define TEST_UTIL_H
 
 const float EPS = 1e-6;
 
@@ -9,4 +9,4 @@ void dydx_poly(float x, float *fx, float *dydx);
 void poly(float x, float *y);
 void dydx_poly_dfdz(float x, float *y, float *dydx);
 
-#endif // TEST_28
+#endif // TEST_UTIL_H
