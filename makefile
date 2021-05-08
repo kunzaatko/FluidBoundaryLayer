@@ -20,7 +20,7 @@ ASANFLAGS += -fno-omit-frame-pointer
 .PHONY: program
 program: src/util.c src/util.h src/blais.h src/blais.c src/main.c
 	@echo Compiling $@
-	@$(CC) $(CFLAGS) src/*.c -o target/program
+	@$(CC) $(CFLAGS) src/*.c -o target/program $(LIBS)
 
 .PHONY: test
 test: tests.out
@@ -39,4 +39,4 @@ clean:
 
 tests.out: test/*.c src/*.c src/*.h
 	@echo Compiling $@
-	@$(CC) $(CFLAGS) src/util.c test/vendor/unity.c test/*.c -o tests.out $(LIBS)
+	@$(CC) $(CFLAGS) src/util.c src/blais.c test/vendor/unity.c test/*.c -o tests.out $(LIBS)

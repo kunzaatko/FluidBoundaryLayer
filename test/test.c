@@ -1,7 +1,4 @@
-#include "test_util.h"
-#include "../src/util.h"
-#include "vendor/unity.h"
-#include <math.h>
+#include "test.h"
 
 void setUp(void) {}
 
@@ -29,6 +26,7 @@ static void test_euler_usint(void) {
          nsteps, zout[1]);
   TEST_ASSERT_TRUE(zout[1] < 16);
   TEST_ASSERT_TRUE(zout[1] > 14);
+
   free_vector(z, 1, 2);
   free_vector(zout, 1, 2);
 }
@@ -40,9 +38,11 @@ void dydx_poly(float x, float *fx, float *dydx) {
   *dydx = 4 * pow(x, 3) - 3 * pow(x, 2) + 10 * pow(x, 1);
 }
 static void test_poly_nrrf(void) {
+  float acc = 1e-6;
+
   float x1 = 0.1;
   float root_right;
-  nrrf(x1, EPS, &root_right, (*dydx_poly));
+  nrrf(x1, acc, &root_right, (*dydx_poly));
   printf("\tRight root of polynom x^{4} - x^{3} + 5x^{2} - 6 is found as %.5f"
          "(true value 1.0854)\n",
          root_right);
@@ -51,7 +51,7 @@ static void test_poly_nrrf(void) {
 
   float x2 = -90;
   float root_left;
-  nrrf(x2, EPS, &root_left, (*dydx_poly));
+  nrrf(x2, acc, &root_left, (*dydx_poly));
   printf("\tLeft root of polynom x^{4} - x^{3} + 5x^{2} - 6 is found as %.5f"
          "(true value -0.93809)\n",
          root_left);
@@ -63,12 +63,15 @@ static void test_poly_nrrf(void) {
 // {{{ TEST_POLY_DFDZ_NRRF
 void poly(float x, float *y) { *y = pow(x, 4) - pow(x, 3) + 5 * pow(x, 2) - 6; }
 void dydx_poly_dfdz(float x, float *y, float *dydx) {
-  dfdz(x, EPS, dydx, y, *poly);
+  float acc = 1e-6;
+  dfdz(x, acc, dydx, y, *poly);
 }
 static void test_poly_dfdz_nrrf(void) {
+  float acc = 1e-6;
+
   float x1 = 0.1;
   float root_right;
-  nrrf(x1, EPS, &root_right, (*dydx_poly_dfdz));
+  nrrf(x1, acc, &root_right, (*dydx_poly_dfdz));
   printf("\tRight root of polynom x^{4} - x^{3} + 5x^{2} - 6 is found as %.5f"
          "(true value 1.0854)\n",
          root_right);
@@ -77,12 +80,26 @@ static void test_poly_dfdz_nrrf(void) {
 
   float x2 = -5;
   float root_left;
-  nrrf(x2, EPS, &root_left, (*dydx_poly_dfdz));
+  nrrf(x2, acc, &root_left, (*dydx_poly_dfdz));
   printf("\tLeft root of polynom x^{4} - x^{3} + 5x^{2} - 6 is found as %.5f"
          "(true value -0.93809)\n",
          root_left);
   TEST_ASSERT_TRUE(root_left < -0.9380);
   TEST_ASSERT_TRUE(root_left > -0.9381);
+}
+// }}}
+
+// {{{ TEST_BLAIS
+static void test_blais(void) {
+  float zA2start = 0;
+  float acc = 0.1;
+  float *zout;
+  zout = vector(1, 3);
+  blais(zA2start, acc, "", zout);
+  printf("\tWith starting parameter Z2(%.0f) = %.0f and accuracy %.2f, "
+         "Z(%.0f)=[%.2f,%.2f,%.2f]",
+         A, zA2start, acc, B, zout[1], zout[2], zout[3]);
+  free_vector(zout, 1, 3);
 }
 // }}}
 
@@ -94,6 +111,11 @@ int main(void) {
   RUN_TEST(test_poly_nrrf);
   printf("--------------\n");
   RUN_TEST(test_poly_dfdz_nrrf);
+
+  UnityBegin("test/test_blais.c");
+
+  RUN_TEST(test_blais);
+  printf("--------------\n");
 
   return UnityEnd();
 }
