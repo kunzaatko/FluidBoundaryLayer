@@ -47,6 +47,7 @@ void rk4(float z[], float dzstart[], int n, float x, float h, float zout[],
     zt[i] = z[i] + hh * dzstart[i];
   }
   float *dz1; // derivative at midpoint1
+  dz1 = vector(1,2);
   (*derivs)(x + hh, zt, dz1);
 
   for (int i = 1; i <= n; i++) {
@@ -54,6 +55,7 @@ void rk4(float z[], float dzstart[], int n, float x, float h, float zout[],
     zt[i] = z[i] + hh * dz1[i];
   }
   float *dz2; // derivative at midpoint2
+  dz2 = vector(1,2);
   (*derivs)(x + hh, zt, dz2);
 
   for (int i = 1; i <= n; i++) {
