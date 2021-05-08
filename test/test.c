@@ -97,25 +97,30 @@ static void test_blais(void) {
   zout = vector(1, 3);
   blais(zA2start, acc, "", zout);
   printf("\tWith starting parameter Z2(%.0f) = %.0f and accuracy %.2f, "
-         "Z(%.0f)=[%.2f,%.2f,%.2f]",
+         "Z(%.0f)=[%.2f,%.2f,%.2f]\n",
          A, zA2start, acc, B, zout[1], zout[2], zout[3]);
   free_vector(zout, 1, 3);
 }
 // }}}
 
 int main(void) {
-  UnityBegin("test/test_util.c");
+  UnityBegin("test/test.c");
 
+
+  printf("\n");
+  printf("   UTIL TEST\n");
+  printf("==============\n\n");
   RUN_TEST(test_euler_usint);
   printf("--------------\n");
   RUN_TEST(test_poly_nrrf);
   printf("--------------\n");
   RUN_TEST(test_poly_dfdz_nrrf);
+  printf("==============\n\n");
 
-  UnityBegin("test/test_blais.c");
-
+  printf("   BLAIS TEST\n");
+  printf("==============\n");
   RUN_TEST(test_blais);
-  printf("--------------\n");
+  printf("==============\n");
 
   return UnityEnd();
 }
