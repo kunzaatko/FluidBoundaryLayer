@@ -25,7 +25,7 @@ void free_matrix(float **m, long nrl, long nrh, long ncl, long nch);
  *              to allocate more times than needed)
  *  n - size of vector z (number of first-order equations that are calculated)
  *  x - point we are advancing from h - step size
- *  derivs - function for derivative of Z [derivs(x,y,dydz)]
+ *  derivs - function for derivative of Z derivs(x,z,dzdx)
  *  zout[] - [output] value of Z(x + h)
  */
 void rk4(float z[], float dzstart[], int n, float x, float h, float zout[],
