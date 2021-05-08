@@ -3,6 +3,8 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+#define UNUSED(x) (void)(x)
+
 /* allocates a float vector with subscript range v[nl..nh] */
 float *vector(long nl, long nh);
 
