@@ -20,7 +20,7 @@ static const float B = 10;
 
 static const float LAMBDA = 0;
 
-static const int STEPS = 1e4;   // number of steps to make in shot
+static const int STEPS = 1e3;   // number of steps to make in shot
 static const float EPS = 1e-4;  // delta to evalutate the derivative
 
 /* Evaluate the blais function from A to B with conditions ZA0 and ZA1 at A and
