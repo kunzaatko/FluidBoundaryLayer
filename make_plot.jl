@@ -1,9 +1,9 @@
 if "-h" in ARGS || "--help" in ARGS
     print("""
 usage:
-    julia -i make_plot.jl {{csv_filename}} {{lambda_value}} {{tikz_file_for_saving}}
+    julia -i make_plot.jl {{csv_filename}} {{lambda_value}} {{file_for_saving (in svg format)}}
 
-    The tikz file is optional.
+    The file for save is optional.
 """)
 end
 
@@ -40,5 +40,5 @@ if length(ARGS) == 3
     plot!(Vector(c[:, 1]), Vector(c[:, 3]); label=L"y'(x)")
 
     plot!(Vector(c[:, 1]), Vector(c[:, 4]); label=L"y''(x)")
-    savefig(tex_output_file * ".tikz")
+    savefig(tex_output_file * ".svg")
 end
