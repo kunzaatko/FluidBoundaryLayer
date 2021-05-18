@@ -74,7 +74,7 @@ void rk4(float z[], float dzstart[], int n, float x, float h, float zout[],
 
   // evaluation of `yout` by the Rundge-Kutta method
   for (int i = 1; i <= n; i++) {
-    zout[i] = z[i] + h / 6 * (dzstart[i] + dzend[i] + 2.0 * dzmid[i]);
+    zout[i] = z[i] + h / 6.0 * (dzstart[i] + dzend[i] + 2.0 * dzmid[i]);
   }
 
 #ifdef DEBUG_RK4
