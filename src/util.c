@@ -42,7 +42,7 @@ void rk4(float z[], float dzstart[], int n, float x, float h, float zout[],
          void (*derivs)(float, float[], float[])) {
   // {{{
 #ifdef DEBUG_RK4
-  printf("\t--- rk4 ---\n");
+  printf("--- rk4 ---\n");
 #endif
   float *zt;
   zt = vector(1, n);  // function value at midpoints (only storage)
@@ -128,7 +128,7 @@ void usint(float z[], int n, int s, float a, float b, float zout[],
 
 #ifdef DEBUG_USINT
   printf(
-      "\tInterval evaluation from Z(%f) = [%.2f,%.2f,%.2f] to Z(%f) = "
+      "\t\tInterval evaluation from Z(%f) = [%.2f,%.2f,%.2f] to Z(%f) = "
       "[%.2f,%.2f,%.2f]\n",
       a, z[1], z[2], z[3], b, zout[1], zout[2], zout[3]);
 #endif
@@ -143,7 +143,7 @@ void usint_print(float z[], int n, int s, float a, float b, float zout[],
                  char *csvfile, void (*derivs)(float, float[], float[])) {
   // {{{
 #ifdef DEBUG_USINT
-  printf("\t--- usint_print ---\n");
+  printf("\t\t--- usint_print ---\n");
 #endif
 
   FILE *ftp;
@@ -188,7 +188,7 @@ void usint_print(float z[], int n, int s, float a, float b, float zout[],
 
 #ifdef DEBUG_USINT
   printf(
-      "\tInterval evaluation from Z(%f) = [%.2f,%.2f,%.2f] to Z(%f) = "
+      "\t\tInterval evaluation from Z(%f) = [%.2f,%.2f,%.2f] to Z(%f) = "
       "[%.2f,%.2f,%.2f]\n",
       a, z[1], z[2], z[3], b, zout[1], zout[2], zout[3]);
 #endif
@@ -203,7 +203,7 @@ void dfdz(float z, float dz, float *dfdz, float *fz,
           void (*f)(float, float *)) {
   // {{{
 #ifdef DEBUG_DFDZ
-  printf("\t--- dfdz ---\n");
+  printf("--- dfdz ---\n");
 #endif
   float fzpdz;  // f(z+dz), f(z)
   f(z + dz, &fzpdz);
@@ -224,7 +224,7 @@ void nrrf(float zstart, float acc, float *zout,
           void (*dfdz)(float, float *, float *)) {
   // {{{
 #ifdef DEBUG_NRRF
-  printf("\t--- nrrf ---\n");
+  printf("--- nrrf ---\n");
 #endif
   float fz, ddfdz;   // function value, derivative at z
   float z = zstart;  // moving point z
@@ -256,7 +256,7 @@ void ibis(float zstart_1, float zstart_2, float acc, float *zout,
           void (*func)(float x, float *fout)) {
   // {{{
 #ifdef DEBUG_IBIS
-  printf("\t--- ibis ---\n");
+  printf("--- ibis ---\n");
   float val_at_root;
 #endif
 
