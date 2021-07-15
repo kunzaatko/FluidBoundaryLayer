@@ -37,7 +37,7 @@
 		y'' = z^{(2)}(x) = \dv{z^{(1)}}{x} \qcomma
 		y''' = z^{(3)}(x) = \dv{z^{(2)}}{x}.
 	\end{equation}
-	Dosazením \ref{substituce} do původní rovnice pak získáváme soustavu differenciálních rovnic prvního řádu pro funkce $z^{(0)}, z^{(1)}, z^{(2)}$:
+	Dosazením \ref{substituce} do původní rovnice pak získáváme soustavu diferenciálních rovnic prvního řádu pro funkce $z^{(0)}, z^{(1)}, z^{(2)}$:
 	\begin{equation}
 		\begin{aligned}
 			z^{(0)}(x) & = y                                                                                   \\
@@ -107,7 +107,7 @@
 		\end{pmatrix}
 		\right)_{\lambda}.
 	\end{equation}
-	Koncový bod potom musí splňovat podmínku $z^{(1)}(10) = 1$, tedy koncové řešení je z prostoru
+	Koncový bod potom musí splňovat podmínku $f'(10) = \dv{z^{(0)}}{x}\eval_{x=10} = z^{(1)}(10) = 1$, tedy koncové řešení je z prostoru
 	\begin{equation}
 		\vec{Z}(10) \in
 		\begin{pmatrix}
@@ -130,15 +130,15 @@
 	\end{equation}
 	Samotná střela potom probíhá tak, že začneme se dvěma zadanými počátečními podmínkami a jedním zvoleným algoritmem hledání kořene (viz. dále) v bodě $x = 0$ a vektor $\vec{Z}(0)$ zvoleným počtem kroků s pomocí Rundge-Kuttova předpisu pro změnu $\vec{Z}$ posouváme až do $\vec{Z}(10)$.
 	\medskip
-	K minimalizaci chyby splnění koncové podmínky, které je ekvivalentní hledání kořene funkce $B_{2}$ od $\vec{Z}_{0}$
+	K minimalizaci chyby splnění koncové podmínky, které je ekvivalentní hledání kořene funkce následující funkce $B_{2}$ od $\vec{Z}_{0}$, kde ale složky počáteční podmínky $z^{(0)}(0) = z^{(1)}(0) = 0$ ze zadání, tedy funkce bude pouze od $z^{(2)(0)}$.
 	\begin{equation}
-		B_{2}(x, \vec{Z}_{0}) \eval_{x = 10}= B_{2}(x, z^{(2)}_{0}) \eval_{x=0}= z^{(1)}(x) - 1 \eval_{x=10}= 0
+		B_{2}(x, \vec{Z}_{0}) \eval_{x = 10}= B_{2}(x, z^{(2)}_{0}) \eval_{x=0}= z^{(1)}(x) - 1 \eval_{x=10}= 0.
 	\end{equation}
-	zkusíme použít naivní Newtonovou-Raphsonovou metodou. Přičemž pro vyhodnocení $z^{(1)}(10) - 1$ musíme vždy najít hodnotu $z^{(1)}(10)$ střelbou s proměnným počátečním parametrem $z^{(2)}_{0}$.
+	Zkusíme na to použít naivní Newtonovou-Raphsonovou metodou. Přičemž pro vyhodnocení $z^{(1)}(10) - 1$ musíme vždy najít hodnotu $z^{(1)}(10)$ střelbou s proměnným počátečním parametrem $z^{(2)}_{0}$.
 
 	\smallskip
 
-	Protože máme prostor počátečních parametrů pouze jednodimenzionální, budeme k tomu potřebovat pouze parciální derivaci
+	Protože máme prostor počátečních parametrů pouze jednodimenzionální, budeme k tomu potřebovat pouze parciální derivaci podle $z_{0}^{(2)}$:
 	\begin{equation}
 		\pdv{B_{2}}{z^{(2)}_{0}} \approx \frac{B_{2}(z^{(2)}_{0} + \Delta z^{(2)}_{0}) - B_{2}(z^{(2)}_{0})}{\Delta z^{(2)}_{0}}.
 	\end{equation}
@@ -146,9 +146,9 @@
 
 	\bigskip
 
-	Implementací se ukázalo, že naivní Newtonova-Raphsonova metoda na hledání kořene není vhodná, jelikož není v tomto příkladu zjevně stabilní. Při splnění koncové podmínky se totiž blíží parciální derivace $B_{2}$ podle $z^{(2)}_{0}$ nule neboli $\pdv{z^{(1)}_{10}}{z^{(2)}_{0}}$ = 0. Řešení je tedy v bodě extrému $B_{2}$ nebo v inflexním bodě s nulovou derivací. Tam naivní Newtonova-Raphsonova metoda na hledání kořene fungovat nebude.
+	Implementací se ukázalo, že naivní Newtonova-Raphsonova metoda na hledání kořene není vhodná, jelikož není v tomto příkladu zjevně stabilní. Při splnění koncové podmínky se totiž blíží parciální derivace $B_{2}$ podle $z^{(2)}_{0}$ nule neboli $\pdv{z^{(1)}_{10}}{z^{(2)}_{0}}$ = 0. Řešení je tedy v bodě extrému $B_{2}$ nebo v inflexním bodě s nulovou derivací. Tam naivní Newtonova-Raphsonova metoda na hledání kořene fungovat nebude, protože bude dělat blízko u kořene velké skoky.
 	\begin{remark}
-		Ekvivalentní příklad by bylo pro případ extrému hledání kořen paraboly $y(x) = ax^2\qcomma a \neq 0$ a pro případ inflexního bodu s nulovou derivací hledání kořene kubického monomu $y(x) = ax^3\qcomma a \neq 0$, kde není zaručeno, že interval omezující přítomnost kořene se zachová v jednotlivých iteracích.
+		Ekvivalentní příklad by bylo pro případ extrému hledání kořene paraboly $y(x) = ax^2\qcomma a \neq 0$ a pro případ inflexního bodu s nulovou derivací hledání kořene kubického monomu $y(x) = ax^3\qcomma a \neq 0$, kde není zaručeno, že interval omezující přítomnost kořene se zachová v jednotlivých iteracích.
 	\end{remark}
 
 	Tyto dva případy se ještě liší v tom, jakou metodu budeme moci pro hledání kořene využít. Pokud se jedná o případ, že je v bodě $z^{(2)}_{0}$ pouze inflexní bod, budeme schopni použít například metodu půlení intervalu, která je v tomto případě relativně rychlá protože vyžaduje malý počet numericky náročných vyhodnocení střel. Jelikož jistě z tvaru $f(x, \vec{Z})$ platí $\lim_{z^{(2)}_{0} \to \infty} B_{2}(10) < 0$ a z testování implementace vyšlo, že existují i počáteční hodnoty s kladnou hodnotou chybové funkce $B_{2}$ (například, $z^{(2)}_{0} = 0$), je dobrá šance, že tato metoda bude na příklad fungovat.
@@ -161,52 +161,52 @@
 		(Díky této numerické chybě je opět porušená záruka, že interval z další iterace je podmnožinou intervalu z předchozí iterace? Musela by se implementovat mezipaměť mezi jednotlivými iteracemi a logika, pro porušení této podmínky.)
 	\end{remark}
 
-	Co se týká implementace půlení intervalu, tak v pro zvolený interval, $(a,b)$, který obsahuje kořen vždy vyhodnotíme funkci (střelu) v $ c \coloneqq \frac{(a+b)}{2} = z^{(2)}_{0}$ a poté jeden z bodů $a,b$ nahradíme $c$, tak aby ve výsledném intervalu zůstal kořen (aby vyčíslení funkce na hranicích intervalu měli opačné znaménko).\pagebreak
+	Co se týká implementace půlení intervalu, tak pro zvolený interval $(a,b)$, který obsahuje kořen vždy vyhodnotíme funkci (střelu) v $ c \coloneqq \frac{(a+b)}{2} = z^{(2)}_{0}$ a poté jeden z bodů $a,b$ nahradíme $c$, tak aby ve výsledném intervalu zůstal kořen (aby vyčíslení funkce na hranicích intervalu měla opačná znaménka).\pagebreak
 
 	\section*{Výsledky}
 	Grafické výsledky
 
-    \begin{figure}[h]
-	\centering
-    \def\svgwidth{\textwidth}
-	\input{figs/lam_0.pdf_tex}
-    \caption{Blaisova rovnice s $\lambda = 0.0$ řešená metodou půlení intervalu na intervalu počátečních hodnot $\left<0.1,3 \right>$ řešená na intervalu $\left<0,10 \right>$.}
-    \end{figure}
+	\begin{figure}[h]
+		\centering
+		\def\svgwidth{\textwidth}
+		\input{figs/lam_0.pdf_tex}
+		\caption{Blaisova rovnice s $\lambda = 0.0$ řešená metodou půlení intervalu na intervalu počátečních hodnot $\left<0.1,3 \right>$ řešená na intervalu $\left<0,10 \right>$.}
+	\end{figure}
 
-    \begin{figure}[h]
-	\centering
-    \def\svgwidth{\textwidth}
-	\input{figs/lam_m0_1.pdf_tex}
-    \caption{Blaisova rovnice s $\lambda = -0.1$ řešená metodou půlení intervalu řešená na intervalu $\left<0,10 \right>$.}
-    \end{figure}
+	\begin{figure}[h]
+		\centering
+		\def\svgwidth{\textwidth}
+		\input{figs/lam_m0_1.pdf_tex}
+		\caption{Blaisova rovnice s $\lambda = -0.1$ řešená metodou půlení intervalu řešená na intervalu $\left<0,10 \right>$.}
+	\end{figure}
 
-    \begin{figure}[h]
-	\centering
-    \def\svgwidth{\textwidth}
-	\input{figs/lam_m1_3.pdf_tex}
-    \caption{Blaisova rovnice s $\lambda = -1.3$ řešená metodou půlení intervalu řešená na intervalu $\left<0,10 \right>$.}
-    \end{figure}
+	\begin{figure}[h]
+		\centering
+		\def\svgwidth{\textwidth}
+		\input{figs/lam_m1_3.pdf_tex}
+		\caption{Blaisova rovnice s $\lambda = -1.3$ řešená metodou půlení intervalu řešená na intervalu $\left<0,10 \right>$.}
+	\end{figure}
 
-    \begin{figure}[h]
-	\centering
-    \def\svgwidth{\textwidth}
-	\input{figs/lam_m3_3.pdf_tex}
-    \caption{Blaisova rovnice s $\lambda = -3.3$ řešená metodou půlení intervalu řešená na intervalu $\left<0,10 \right>$.}
-    \end{figure}
+	\begin{figure}[h]
+		\centering
+		\def\svgwidth{\textwidth}
+		\input{figs/lam_m3_3.pdf_tex}
+		\caption{Blaisova rovnice s $\lambda = -3.3$ řešená metodou půlení intervalu řešená na intervalu $\left<0,10 \right>$.}
+	\end{figure}
 
-    \begin{figure}[h]
-	\centering
-    \def\svgwidth{\textwidth}
-	\input{figs/lam_m4_3.pdf_tex}
-    \caption{Blaisova rovnice s $\lambda = -4.3$ řešená metodou půlení intervalu řešená na intervalu $\left<0,10 \right>$.}
-    \end{figure}
+	\begin{figure}[h]
+		\centering
+		\def\svgwidth{\textwidth}
+		\input{figs/lam_m4_3.pdf_tex}
+		\caption{Blaisova rovnice s $\lambda = -4.3$ řešená metodou půlení intervalu řešená na intervalu $\left<0,10 \right>$.}
+	\end{figure}
 
-    \begin{figure}[h]
-	\centering
-    \def\svgwidth{\textwidth}
-	\input{figs/lam_m5_3.pdf_tex}
-    \caption{Blaisova rovnice s $\lambda = -5.3$ řešená metodou půlení intervalu řešená na intervalu $\left<0,10 \right>$.}
-    \end{figure}
+	\begin{figure}[h]
+		\centering
+		\def\svgwidth{\textwidth}
+		\input{figs/lam_m5_3.pdf_tex}
+		\caption{Blaisova rovnice s $\lambda = -5.3$ řešená metodou půlení intervalu řešená na intervalu $\left<0,10 \right>$.}
+	\end{figure}
 
 \end{example}
 \end{document}
