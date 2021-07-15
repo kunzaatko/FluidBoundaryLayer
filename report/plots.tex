@@ -1,0 +1,137 @@
+\documentclass[landscape]{article}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{physics}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
+\usepackage{pgfplots}
+\usetikzlibrary{backgrounds}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{fillbetween}
+
+\newtheorem{example}{Příklad}
+\newtheorem*{remark}{\underline{\it pozn.:}}
+
+\makeatletter
+\usepackage{xpatch}
+\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}
+\makeatother
+
+\begin{document}
+\fontsize{10pt}{15pt}\selectfont
+
+% \section*{Výsledky}
+% Grafické výsledky
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_0_5/lam_0_5.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = 0.5$.}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_0_45/lam_0_45.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = 0.45$.}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_0_4/lam_0_4.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = 0.4$.}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_0_35/lam_0_35.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = 0.35$.}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_0_3/lam_0_3.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = 0.3$.}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_0_25/lam_0_25.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = 0.25$.}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_0_2/lam_0_2.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = 0.2$.}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_0_15/lam_0_15.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = 0.15$.}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_0_1/lam_0_1.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = 0.1$.}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_0_05/lam_0_05.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = 0.05$.}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_0/lam_0.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = 0.0$.}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_m0_1/lam_m0_1.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = -0.1$.}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_m1_3/lam_m1_3.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = -1.3$.}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_m3_3/lam_m3_3.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = -3.3$.}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_m4_3/lam_m4_3.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = -4.3$.}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{figs/lam_m5_3/lam_m5_3.pdf_tex}
+	\caption{Blaisova rovnice s $\lambda = -5.3$.}
+\end{figure}
+
+\end{document}
