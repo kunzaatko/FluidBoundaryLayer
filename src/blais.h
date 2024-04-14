@@ -8,11 +8,11 @@
 #include "util.h"
 
 // initial conditions
-static const float ZA0 = 0;
-static const float ZA1 = 0;
+static const float ZA0 = 0; // y(A)
+static const float ZA1 = 0; // y'(A)
 
 // final condition
-static const float ZB1 = 1;
+static const float ZB1 = 1; // y'(B)
 
 // interval
 static const float A = 0;
@@ -21,7 +21,7 @@ static const float B = 10;
 static const float LAMBDA = 0;
 
 static const int STEPS = 1e3;   // number of steps to make in shot
-static const float EPS = 1e-4;  // delta to evalutate the derivative
+static const float EPS = 1e-4;  // delta to evaluate the derivative
 
 /* Evaluate the blais function from A to B with conditions ZA0 and ZA1 at A and
  * condition ZB1 at B using Newton-Raphson root finding algorithm
