@@ -1,22 +1,3 @@
-\documentclass{article}
-
-\usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{physics}
-\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
-\usepackage{pgfplots}
-\usetikzlibrary{backgrounds}
-\pgfplotsset{compat=newest}
-\usepgfplotslibrary{fillbetween}
-
-\newtheorem{example}{Příklad}
-\newtheorem*{remark}{\underline{\it pozn.:}}
-
-\makeatletter
-\usepackage{xpatch}
-\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}
-\makeatother
-
-\begin{document}
 \fontsize{10pt}{15pt}\selectfont
 \setcounter{example}{27}
 \begin{example}
@@ -163,4 +144,3 @@
 
 	Co se týká implementace půlení intervalu, tak pro zvolený interval $(a,b)$, který obsahuje kořen vždy vyhodnotíme funkci (střelu) v $ c \coloneqq \frac{(a+b)}{2} = z^{(2)}_{0}$ a poté jeden z bodů $a,b$ nahradíme $c$, tak aby ve výsledném intervalu zůstal kořen (aby vyčíslení funkce na hranicích intervalu měla opačná znaménka).\pagebreak
 \end{example}
-\end{document}
