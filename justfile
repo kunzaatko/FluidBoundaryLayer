@@ -20,8 +20,7 @@ build-diagrams:
 
     # Converting to PNG
     convert -density 720 -background transparent -flatten ./report/diagrams/build/wedge/wedge.pdf  static/wedge.png
-    convert -density 720 -background transparent -flatten ./report/diagrams/build/flow_profile/flow_profile.pdf
-    static/flow_profile.png
+    convert -density 720 -background transparent -flatten ./report/diagrams/build/flow_profile/flow_profile.pdf static/flow_profile.png
 
 build-report:
     @echo Building report...

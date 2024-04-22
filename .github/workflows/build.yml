@@ -28,7 +28,10 @@ jobs:
         working-directory: ./report/protocol/
         run: tectonic -X build
       - name: Build document
-        working-directory: ./report/plots
+        working-directory: ./report/plots/
+        run: tectonic -X build
+      - name: Build document
+        working-directory: ./report/diagrams/
         run: tectonic -X build
 
       - name: Upload pdf
@@ -36,7 +39,8 @@ jobs:
         with:
           name: report
           path: |
-            report/28/build/*
+            report/protocol/build/*
             report/plots/build/*
+            report/diagrams/build/*
 
           # TODO: Add tests <14-04-24> 

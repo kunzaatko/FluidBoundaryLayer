@@ -1,0 +1,13 @@
+[doc]
+name = "diagrams"
+bundle = "https://data1.fullyjustified.net/tlextras-2022.0r0.tar"
+
+[[output]]
+name = "wedge"
+type = "pdf"
+index = "index_wedge.tex"
+
+[[output]]
+name = "flow_profile"
+type = "pdf"
+index = "index_flow.tex"

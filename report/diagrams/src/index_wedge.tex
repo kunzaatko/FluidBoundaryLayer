@@ -1,0 +1,33 @@
+\begin{tikzpicture}
+\tikzset{%
+  show curve controls/.style={
+    postaction={
+      decoration={
+        show path construction,
+        curveto code={
+          \draw [blue] 
+            (\tikzinputsegmentfirst) -- (\tikzinputsegmentsupporta)
+            (\tikzinputsegmentlast) -- (\tikzinputsegmentsupportb);
+          \fill [red, opacity=0.5] 
+            (\tikzinputsegmentsupporta) circle [radius=.5ex]
+            (\tikzinputsegmentsupportb) circle [radius=.5ex];
+        }
+      },
+      decorate
+}}}
+  \coordinate (T1) at (1,-0.5);
+  \coordinate (T2) at (0,0);
+  \coordinate (T3) at (1,0.5);
+  
+  \draw (T1) -- (T2) -- (T3);
+  
+  \tkzMarkAngle (T1,T2,T3);
+  \tkzLabelAngle[pos=0.6](T1,T2,T3){$\lambda\pi$};
+
+  \draw[-{Stealth[scale=0.5]}] (-1, 0.5) .. controls (-0.1, 0.5) and (-0.2,0.6) .. (1, 1.1);
+  \draw[-{Stealth[scale=0.5]}] (-1, 0.3) .. controls (-0.1, 0.25) and (-0.2, 0.4) .. (1, 0.9);
+  \draw[-{Stealth[scale=0.5]}] (-1, 0.1) .. controls (-0.2, 0.05) .. (1, 0.7);
+  \draw[-{Stealth[scale=0.5]}] (-1,-0.1) .. controls (-0.2,-0.05) .. (1, -0.7);
+  \draw[-{Stealth[scale=0.5]}] (-1,-0.3) .. controls (-0.1,-0.25) and (-0.2, -0.4) .. (1, -0.9);
+  \draw[-{Stealth[scale=0.5]}] (-1,-0.5) .. controls (-0.1,-0.5) and (-0.2, -0.6) .. (1, -1.1);
+\end{tikzpicture}

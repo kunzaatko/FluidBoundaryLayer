@@ -1,0 +1,49 @@
+\begin{tikzpicture}
+
+\tikzset{%
+  show curve controls/.style={
+    postaction={
+      decoration={
+        show path construction,
+        curveto code={
+          \draw [blue] 
+            (\tikzinputsegmentfirst) -- (\tikzinputsegmentsupporta)
+            (\tikzinputsegmentlast) -- (\tikzinputsegmentsupportb);
+          \fill [red, opacity=0.5] 
+            (\tikzinputsegmentsupporta) circle [radius=.5ex]
+            (\tikzinputsegmentsupportb) circle [radius=.5ex];
+        }
+      },
+      decorate
+}}}
+
+  \coordinate (T2) at (0,0);
+  \coordinate (T3) at (2.4,1.2);
+  \coordinate (Tmid) at (2.5, 0);
+  
+
+
+  \draw[-{Stealth[scale=0.5]}] (T2) -- (T3);
+  \draw[style=dashed] (-0.8, 0) -- (Tmid);
+  \tkzMarkAngle[size = 0.9](Tmid,T2,T3);
+  \tkzLabelAngle[pos=1.4, scale=0.5](Tmid,T2,T3){$\frac{\lambda\pi}{2}$};
+
+  \coordinate (x_origin) at (1,0.5);
+  \coordinate (x_top) at (-0.5, 3.5);
+  \draw[-{Latex[scale=0.5]}, label = $x$] (x_origin) -- (x_top);
+  \tkzMarkRightAngle[draw=black, size=0.1, dotsize = 0.5, german](x_top,x_origin,T2);
+  \tkzLabelPoint[left=2,scale = 0.4, below=4](x_top){$x$};
+  
+  \tkzLabelPoint[right=16,scale = 0.4, below](1, 3.5){$y' = u(x)/U$};
+  \draw[-{Stealth[scale=0.5]},line width=0.3] (x_origin) .. controls (2, 1.75) and (1.5,2) .. (1, 3.5);
+
+  % \coordinate (uU_top_1) at (-0.125, 2.75);
+  % \coordinate (uU_top_2) at (1.015, 3.32);
+  % \tkzLabelLine[above, scale=0.3, rotate=25](uU_top_1,uU_top_2){$\approx 1$};
+  \draw[decorate, decoration={calligraphic brace,raise=1.5},label=$\approx 1$] (-0.095, 2.765) -- (1.015, 3.32)
+  node[scale=0.3, rotate=25, pos=0.5, above=15]
+  {$\approx 1$};
+  \draw[-{Stealth[scale=0.5]}, style=dashed] (-0.125, 2.75) -- (1.015, 3.32);
+  \draw[-{Stealth[scale=0.5]}, style=dashed] (0.25, 2) -- (1.33, 2.54);
+  \draw[-{Stealth[scale=0.5]}, style=dashed] (0.625, 1.25) -- (1.55, 1.7);
+\end{tikzpicture}
