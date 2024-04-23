@@ -23,8 +23,10 @@ A schematic of the situation is illustrated in the figure below.
         </p>
         <figcaption> 
         <p align="justify">
+            <sub>
             A wedge consisting of two plates that is put into an environment with homogeneous viscous fluid flow. 
             The arrows illustrate approximate trajectories of closed infinitesimal volumes of the fluid along the wedge.
+            </sub>
         </p>
         </figcaption>
     </figure>
@@ -44,6 +46,7 @@ Since a picture is worth a thousand words, below is a diagram that illustrates t
         equation Falkner-Skan boundary layer differential equation" width="600" />
     <figcaption>
     <p align="justify">
+        <sub>
         The dashed line of the two diagrams correspond to each other and represent the axis of symmetry of the wedge.
         The x axis is perpendicular to the wedge surface. The arrows originating from the x axis represent the first
             derivative of the solution to the Falkner-Skan boundary layer differential equation and illustrate the 
@@ -51,6 +54,7 @@ Since a picture is worth a thousand words, below is a diagram that illustrates t
         The boundary condition of 1 is physically logical, since we assume that the wedge affects only a bounded volume 
             of the flow and in the limit or approximation in the far distances, the velocity is equal to the external 
             velocity of the fluid and thus in relative terms is equal to 1. 
+        </sub>
     </p>
     </figcaption> 
 </p>
@@ -65,11 +69,13 @@ This form of the differential equation is originally developed from the _Navier-
     </p>
     <figcaption> 
         <p align="justify">
+        <sub>
         This is the solution to the Falkner-Skan equation for various values of lambda.
         What feels counter intuitive to me is the fact that for greater values of lambda, i.e. greater angles of attack,
             the velocity is greater in the equivalent distance than for smaller angles.
         This effectively means that the "boundary layer" is narrower and thus a greater angle causes a smaller volume of 
             "disruption".
+        </sub>
         </p>
     </figcaption>
 </figure>
