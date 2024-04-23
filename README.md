@@ -59,6 +59,20 @@ Since a picture is worth a thousand words, below is a diagram that illustrates t
 This form of the differential equation is originally developed from the _Navier-Stokes_ equations by applying boundary 
     layer approximations, which are based on neglecting the terms which are small in the boundary layer.
 
+<figure>
+    <p align="center">
+        <img src="static/y'_falkner_skan.svg" alt="The solution to the Falkner-Skan equation of y' for various values of lambda" width = 1000/>
+    </p>
+    <figcaption> 
+        <p align="justify">
+        This is the solution to the Falkner-Skan equation for various values of lambda.
+        What feels counter intuitive to me is the fact that for greater values of lambda, i.e. greater angles of attack,
+            the velocity is greater in the equivalent distance than for smaller angles.
+        This effectively means that the "boundary layer" is narrower and thus a greater angle causes a smaller volume of 
+            "disruption".
+        </p>
+    </figcaption>
+</figure>
 
 ## Note about the name of the repository
 
@@ -123,8 +137,24 @@ Benchmark 1: ./program
 
 ## Report
 
-TODO
+A $\LaTeX$ protocol accompanies the implementation which goes a little bit deeper into the details of the algorithm and 
+    the decisions that went into the specific implementation that is available here.
+There is a protocol written in Czech and English and also compiled plots in both languages in the `report/` directory. 
+The latest built `pdf`s of all of these documents are available in the release assets 
+    [here](https://github.com/kunzaatko/FluidBoundaryLayer/releases/latest).
 
 ## Plotting
 
-TODO
+There is a julia script for plotting in the `plotting/` directory.
+To run the script, first download the dependencies by running
+```bash
+$ julia --project=plotting -e "using Pkg; Pkg.update()"
+```
+Then you should be able to run the script using
+```bash
+$ julia --project=plotting plotting/make_plot.jl # args...
+```
+For the help with the command-line arguments, check the help page by
+```bash
+$ julia --project=plotting plotting/make_plot.jl --help
+```
