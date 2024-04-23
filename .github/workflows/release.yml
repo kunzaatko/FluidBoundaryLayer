@@ -30,15 +30,19 @@ jobs:
       - name: Build plots
         working-directory: ./report/plots/
         run: tectonic -X build
-      - name: Build diagrams
-        working-directory: ./report/diagrams/
-        run: tectonic -X build
+      - name: Build program
+        uses: extractions/setup-just@v2
+        run: just build-program
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           files: |
-            report/protocol/build/*/*.pdf
-            report/plots/build/*/*.pdf
-            report/diagrams/build/*/*.pdf
+            report/protocol/build/report_en/report_en.pdf
+            report/protocol/build/report_cs/report_cs.pdf
+            report/plots/build/plots_cs/plots_cs.pdf
+            report/plots/build/plots_en/plots_en.pdf
+            ./program
+            LICENSE
+
