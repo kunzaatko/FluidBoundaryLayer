@@ -1,0 +1,21 @@
+\documentclass[landscape]{article}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{physics}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
+\usepackage{pgfplots}
+\usepackage[czech]{babel}
+\usetikzlibrary{backgrounds}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{fillbetween}
+
+\newtheorem{example}{Příklad}
+\newtheorem*{remark}{\underline{\it pozn.:}}
+
+\makeatletter
+\usepackage{xpatch}
+\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}
+\makeatother
+
+\begin{document}
+\fontsize{10pt}{15pt}\selectfont
