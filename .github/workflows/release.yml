@@ -23,8 +23,17 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           biber-version: '2.17'
-      - name: Build document
+
+      - name: Build protocol
+        working-directory: ./report/protocol/
         run: tectonic -X build
+      - name: Build plots
+        working-directory: ./report/plots/
+        run: tectonic -X build
+      - name: Build diagrams
+        working-directory: ./report/diagrams/
+        run: tectonic -X build
+
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
