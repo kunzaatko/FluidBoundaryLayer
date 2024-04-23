@@ -3,5 +3,13 @@ name = "28"
 bundle = "https://data1.fullyjustified.net/tlextras-2022.0r0.tar"
 
 [[output]]
-name = "cz_report"
+name = "report_cs"
 type = "pdf"
+preamble = "_preamble_cs.tex"
+index = "index_cs.tex"
+
+[[output]]
+name = "report_en"
+type = "pdf"
+preamble = "_preamble_en.tex"
+index = "index_en.tex"

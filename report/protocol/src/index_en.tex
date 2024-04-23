@@ -1,0 +1,149 @@
+\fontsize{10pt}{15pt}\selectfont
+\setcounter{example}{27}
+\begin{example}
+	Solve the boundary layer Blasius equation
+	\begin{gather*}
+		y''' + y y'' + \lambda \left( 1 - y'^{2} \right)  = 0,
+		\qq{where } x \in (0,10) \qcomma \lambda \in \langle 0, 0.5 \rangle \\
+		y(0) = y'(0) = 0 \qcomma y'(10) = 1
+	\end{gather*}
+	\smallskip
+	\hrule
+	\medskip
+	First, we need to decompose the third order differential equation into three first-order ordinary differential equations. This is done by the substitutions:
+	\begin{equation}
+		\label{substituce}
+		y = z^{(0)}(x) \qcomma
+		y' = z^{(1)}(x) = \dv{z^{(0)}}{x} \qcomma
+		y'' = z^{(2)}(x) = \dv{z^{(1)}}{x} \qcomma
+		y''' = z^{(3)}(x) = \dv{z^{(2)}}{x}.
+	\end{equation}
+	Substituting \ref{substituce} into the original equation, we obtain a system of first-order differential equations for the functions $z^{(0)}, z^{(1)}, z^{(2)}$:
+	\begin{equation}
+		\begin{aligned}
+			z^{(0)}(x) & = y                                                            \\
+			z^{(1)}(x) & = \dv{z^{(0)}}{x}                                              \\
+			z^{(2)}(x) & = \dv{z^{(1)}}{x}                                              \\
+			z^{(3)}(x) & = \dv{z^{(2)}}{x}(x) & = -\lambda \left( 1 - {z^{(1)}}^{2} \right)  - z^{(2)}z^{(0)}.
+		\end{aligned}
+	\end{equation}
+	The initial conditions are transformed to $z^{(0)}(0) = 0$ and $z^{(1)}(0) = 0$, and the final condition to $z^{(1)}(10) = 1$.
+
+	\medskip
+
+	We will interpret this system as a vector function of $x$, and define $\vec{f}(x)$ as its $\grad_x$, specifically
+	\begin{equation}
+		\vec{Z}(x) =
+		\begin{pmatrix}
+			z^{(0)}(x) \\
+			z^{(1)}(x) \\
+			z^{(2)}(x) \\
+		\end{pmatrix} \qcomma
+		\vec{f}\left(x,\vec{Z}\right) =
+		\begin{pmatrix}
+			\dv{z^{(0)}}{x}\eval_{x,\vec{Z}} \\
+			\dv{z^{(1)}}{x}\eval_{x,\vec{Z}} \\
+			\dv{z^{(2)}}{x}\eval_{x,\vec{Z}} \\
+		\end{pmatrix}  =
+		\begin{pmatrix}
+			z^{(1)}(x,\vec{Z}) \\
+			z^{(2)}(x,\vec{Z}) \\
+			z^{(3)}(x,\vec{Z}) \\
+		\end{pmatrix} =
+		\begin{pmatrix}
+			z^{(1)} \\
+			z^{(2)} \\
+			-\lambda \left( 1 - {z^{(1)}}^{2} \right)  - z^{(2)}z^{(0)}
+		\end{pmatrix}.
+	\end{equation}
+	Numerical solution will be performed using the one-way shooting method from the point $x_{0} = \vec{0}$, and solving the differential equations with trial initial conditions using the fourth-order Runge-Kutta method, specifically:
+	\begin{equation}
+		\begin{aligned}
+			\vec{k}_{1} & = h \cdot \vec{f}\left(  x_{n}, \vec{Z}(x_{n}) \right)                                      \\
+			\vec{k}_{2} & = h \cdot \vec{f}\left(  x_{n} + \frac{h}{2}, \vec{Z}(x_{n}) + \frac{\vec{k}_{1}}{2} \right) \\
+			\vec{k}_{3} & = h \cdot \vec{f}\left( x_{n} + \frac{h}{2}, \vec{Z}(x_{n}) + \frac{\vec{k}_{2}}{2}  \right) \\
+			\vec{k}_{4} & = h \cdot \vec{f}\left( x_{n} + h, \vec{Z}(x_{n}) + \vec{k}_{3}  \right)
+		\end{aligned}
+	\end{equation}
+	where the final estimate of $\vec{Z}(x_{n+1})$ is
+	\begin{equation}
+		\vec{Z}(x_{n+1}) = \vec{Z}(x_{n}) + \frac{1}{6}  \left(\vec{k}_{1} +  2\vec{k}_{2} + 2\vec{k}_{3} + \vec{k}_{4} \right).
+	\end{equation}
+	For the forward pass, we need three parameters at the initial point, which we take as
+	\begin{equation}
+		\vec{Z}(0) =
+		\begin{pmatrix}
+			z^{(0)}(0) \\
+			z^{(1)}(0) \\
+			z^{(2)}(0)
+		\end{pmatrix},  \qq{where} z^{(0)}(0) = z^{(1)}(0) = 0,
+	\end{equation}
+	thus with our initial conditions, we search for the initial parameter space
+	\begin{equation}
+		\vec{Z}(0) \in \left(
+		\begin{pmatrix}
+			0 \\
+			0 \\
+			1 \\
+		\end{pmatrix}
+		\right)_{\lambda}.
+	\end{equation}
+	The final point must then satisfy the condition $f'(10) = \dv{z^{(0)}}{x}\eval_{x=10} = z^{(1)}(10) = 1$, so the final solution is from the space
+	\begin{equation}
+		\vec{Z}(10) \in
+		\begin{pmatrix}
+			0 \\
+			1 \\
+			0 \\
+		\end{pmatrix}  +
+		\left(
+		\begin{pmatrix}
+			1 \\
+			0 \\
+			0 \\
+		\end{pmatrix},
+		\begin{pmatrix}
+			0 \\
+			0 \\
+			1 \\
+		\end{pmatrix}
+		\right)_{\lambda}.
+	\end{equation}
+	The actual shooting then proceeds by starting with two given initial conditions and a chosen root-finding algorithm (see below) at the point $x = 0$ and the vector $\vec{Z}(0)$, and with a chosen number of steps using the Runge-Kutta prescription, moves to $\vec{Z}(10)$.
+
+	\medskip
+	To minimize the error in satisfying the final condition, which is equivalent to finding the root of the following function $B_{2}$ from $\vec{Z}_{0}$, but with the initial condition components $z^{(0)}(0) = z^{(1)}(0) = 0$ from the assignment, thus the function will only depend on $z^{(2)(0)}$.
+	\begin{equation}
+		B_{2}(x, \vec{Z}_{0}) \eval_{x = 10}= B_{2}(x, z^{(2)}_{0}) \eval_{x=0}= z^{(1)}(x) - 1 \eval_{x=10}= 0.
+	\end{equation}
+	We will attempt to use the naive Newton-Raphson method for this. For the evaluation of $z^{(1)}(10) - 1$, we must always find the value of $z^{(1)}(10)$ by shooting with the variable initial parameter $z^{(2)}_{0}$.
+
+	\smallskip
+
+	Since we only have a one-dimensional parameter space, we will need only the partial derivative with respect to $z_{0}^{(2)}$:
+	\begin{equation}
+		\pdv{B_{2}}{z^{(2)}_{0}} \approx \frac{B_{2}(z^{(2)}_{0} + \Delta z^{(2)}_{0}) - B_{2}(z^{(2)}_{0})}{\Delta z^{(2)}_{0}}.
+	\end{equation}
+	This is obtained by two shots with initial parameters $z^{(2)}_{0} + \Delta z^{(2)}_{0}$ and $z^{(2)}_{0}$ for the evaluation of $z^{(1)}(x)\eval_{x=10} \eqqcolon z^{(1)}_{10}$ and subsequent evaluation of the error function $B_{2}$.
+
+	\bigskip
+
+	It was found by implementation that the naive Newton-Raphson method for finding the root is not suitable, as it is apparently unstable in this example. When satisfying the final condition, the partial derivative of $B_{2}$ with respect to $z^{(2)}_{0}$ approaches zero, or $\pdv{z^{(1)}_{10}}{z^{(2)}_{0}}$ = 0. The solution is thus at the point of extremum of $B_{2}$ or at an inflection point with zero derivative. The naive Newton-Raphson method for finding the root will not work there, as it will make large jumps close to the root.
+
+	\begin{remark}
+		An equivalent example would be for the case of an extremum, searching for the root of a parabola $y(x) = ax^2\qcomma a \neq 0$, and for the case of an inflection point with zero derivative, searching for the root of a cubic monomial $y(x) = ax^3\qcomma a \neq 0$, where it is not guaranteed that the interval containing the root will remain the same in each iteration.
+	\end{remark}
+
+	These two cases also differ in the method that can be used to find the root. If it is the case that there is only an inflection point at the point $z^{(2)}_{0}$, we will be able to use, for example, the bisection method, which is relatively fast in this case because it requires a small number of numerically demanding evaluations of the shots. Since certainly from the shape of $f(x, \vec{Z})$ it holds that $\lim_{z^{(2)}_{0} \to \infty} B_{2}(10) < 0$, and from testing the implementation it emerged that there are initial values with a positive value of the error function $B_{2}$ (for example, $z^{(2)}_{0} = 0$), there is a good chance that this method will work in this example.
+
+	\begin{remark}
+		We could use the secant method, which converges faster, but to use the secant method, it would be necessary to switch to another method at the right time, as if we wanted an exact result, numerical error would arise on small intervals due to the division of the difference of functional values on the ends of the interval.
+
+		(I'm not sure if this would be a problem, considering that we divide a surely smaller value. It is possible that the numerical error outweighs and the result will be greater than 1, meaning that the point lies outside the interval?)
+
+		(Due to this numerical error, the guarantee that the interval from the next iteration is a subset of the interval from the previous iteration is again violated? A cache would have to be implemented between individual iterations and logic for violating this condition.)
+	\end{remark}
+
+	As for the implementation of the bisection method, for the chosen interval $(a,b)$, which always contains the root, we will evaluate the function (shooting) at $ c \coloneqq \frac{(a+b)}{2} = z^{(2)}_{0}$ and then replace one of the points $a,b$ with $c$, so that the root remains in the resulting interval (so that the evaluation of the function at the boundaries of the interval has opposite signs).\pagebreak
+\end{example}
+
